@@ -43,8 +43,10 @@ function Navbar() {
     setIsOpen(!isOpen);
   };
   return (
-    <header className="flex items-center place-items-center justify-between w-full lg:px-32 md:px-12 px-8 py-8 relative font-bold font-mono">
-      <nav>Site Name</nav>
+    <header className="flex bg-gray-100 items-center place-items-center justify-between w-full lg:px-32 md:px-12 px-8 py-5 relative font-bold text-xl font-mono">
+      <nav>
+        <Link href={"/"}>GizmoHub</Link>
+      </nav>
       <nav className="hidden lg:flex items-center gap-x-8">
         <CustomLink href={"/"} title={"Home"} />
         <CustomLink href={"/products"} title={"Products"} />

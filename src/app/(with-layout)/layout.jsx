@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "../components/Footer/page";
 import Navbar from "../components/Navbar/page";
 
 function Withlayout({ children }) {
@@ -7,6 +8,7 @@ function Withlayout({ children }) {
     <div>
       <Navbar />
       {children}
+      <Footer />
     </div>
   );
 }
