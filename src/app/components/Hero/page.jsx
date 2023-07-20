@@ -14,7 +14,7 @@ function Hero() {
         <div className="flex flex-col justify-center">
           <p className="text-[#00df9a] font-bold ">The Best Online Store</p>
           <h1 className="md:text-4xl sm:text-3xl text-2xl font-bold py-2">
-            One stop solution for
+            One stop tech solution
           </h1>
           <p>
             Welcome to GizmoHub, your ultimate destination for cutting-edge

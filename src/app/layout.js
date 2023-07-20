@@ -1,5 +1,10 @@
+"use client";
 import "./globals.css";
 import { Inter, Roboto_Mono } from "next/font/google";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
 const roboto_mono = Roboto_Mono({
   subsets: ["latin"],
   display: "swap",
@@ -15,9 +20,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${roboto_mono.variable}`}>
-        {children}
-      </body>
+      <QueryClientProvider client={queryClient}>
+        <body className={`${inter.variable} ${roboto_mono.variable}`}>
+          {children}
+        </body>
+      </QueryClientProvider>
     </html>
   );
 }
