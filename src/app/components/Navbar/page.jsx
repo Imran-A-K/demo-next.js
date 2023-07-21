@@ -39,21 +39,32 @@ const CustomMobileLink = ({ href, title, className = "", toggle }) => {
 };
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathName = usePathname();
+  // console.log(pathName !== "/");
+
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <header className="flex bg-gray-100 items-center place-items-center justify-between w-full lg:px-32 md:px-12 px-8 py-5 relative font-bold text-xl font-mono">
-      <nav>
-        <Link href={"/"}>GizmoHub</Link>
+    <header
+      className={`${
+        pathName !== "/" && "bg-blend-lighten border-b-stone-200"
+      } bg-gray-100 flex  items-center place-items-center justify-between w-full lg:px-32 md:px-12 px-8 py-5 sticky top-0 z-50 font-bold text-xl font-mono `}
+    >
+      <nav className="lg:pl-10 relative">
+        <Link className="lg:pl-10" href={"/"}>
+          GizmoHub
+        </Link>
       </nav>
       <nav className="hidden lg:flex items-center gap-x-8">
         <CustomLink href={"/"} title={"Home"} />
         <CustomLink href={"/products"} title={"Products"} />
-        <Link className="flex mr-6 items-center" href={"#"}>
+      </nav>
+      <nav className="flex items-center justify-between">
+        <Link className="flex max-md:hidden mr-6 items-center" href={"#"}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 hover:text-blue-700"
+            className="h-6 w-6 hover:text-gray-700"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -70,17 +81,16 @@ function Navbar() {
             <span className="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
           </span> */}
         </Link>
-      </nav>
-      <nav className="flex items-center justify-between">
         <Link className="hidden lg:block" href="">
-          <button class="block mx-auto bg-black hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-2 font-semibold">
+          {/* focus:bg-indigo-700 */}
+          <button class="block mx-auto bg-black hover:bg-gray-700  text-white rounded-lg px-3 py-2 font-semibold">
             Login
           </button>
         </Link>
         <Link className="lg:hidden flex mr-6 items-center" href={"#"}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 hover:text-blue-700"
+            className="h-6 w-6 cursor-pointer"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { FaFacebook, FaInstagram, FaTwitter, FaCar } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaCar,
+  FaRenren,
+} from "react-icons/fa";
 function Footer() {
   return (
     <footer className="w-full mt-12 bg-gray-900 text-gray-300 px-2">
@@ -41,9 +47,9 @@ function Footer() {
         </div>
         <div className="col-span-2 pt-8 md:pt-2">
           <div className="flex gap-2 pb-2 items-center">
-            <FaCar className="text-3xl"></FaCar>
+            <FaRenren className="text-3xl"></FaRenren>
             <h1 className="text-2xl font-semibold mr-4 sm:text-3xl">
-              XtremeWheelz
+              GizmoHub
             </h1>
           </div>
           <p className="py-4">Address: Level-23, Lab-7 complex, Chattogram</p>
