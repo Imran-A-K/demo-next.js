@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../components/Button/page";
 import {
   useFullProducts,
@@ -47,12 +47,39 @@ import ProductCard from "@/app/components/Product-card/page";
 // };
 function Products() {
   const [fullProducts] = useFullProducts();
-  const products = [...fullProducts];
+  // const products = [...fullProducts];
+  const [products, setProducts] = useState([...fullProducts]);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
   const totalPages = Math.ceil(products.length / itemsPerPage);
   const pageNumbers = [...Array(totalPages).keys()];
   const options = [5, 10, 15, 20]; // dropdown options
+
+  const [searchText, setSearchText] = useState("");
+  const [searchNotMatched, setSeacrhNotMatched] = useState(false);
+
+  useEffect(() => {
+    const filteredProducts = (searchText) => {
+      const lowerSearchText = searchText.toLowerCase();
+      if (!lowerSearchText) {
+        setProducts([...fullProducts]);
+      } else {
+        const filtered = products.filter(
+          (product) =>
+            product.title.toLowerCase().includes(lowerSearchText) ||
+            product.description.toLowerCase().includes(lowerSearchText) ||
+            product.category.toLowerCase().includes(lowerSearchText)
+        );
+        setProducts(filtered);
+        if (filtered.length === 0) {
+          setSeacrhNotMatched(true);
+        } else {
+          setSeacrhNotMatched(false);
+        }
+      }
+    };
+    filteredProducts(searchText);
+  }, [searchText, fullProducts, products]);
   return (
     <div className="flex items-center justify-center">
       <div
@@ -88,8 +115,8 @@ function Products() {
               className="bg-gray-100 outline-none"
               type="text"
               placeholder="Search your product..."
-              // value={searchText}
-              // onChange={(event) => setSearchText(event.target.value)}
+              value={searchText}
+              onChange={(event) => setSearchText(event.target.value)}
             />
           </div>
         </div>
@@ -116,6 +143,13 @@ function Products() {
               ></ProductCard>
             ))}
           </div>
+          {searchNotMatched && (
+            <div>
+              <h2 className="text-4xl text-center font-mono font-semibold max-sm:text-2xl">
+                No Items matched your search.....
+              </h2>
+            </div>
+          )}
         </div>
         <div className="text-center mb-8">
           <p>
