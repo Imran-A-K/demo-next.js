@@ -2,9 +2,12 @@ import Image from "next/image";
 import React from "react";
 import Rating from "../Rating/page";
 
-function ProductCard({ img, title, price, rating }) {
+function ProductCard({ img, title, price, rating, id, router, category }) {
   return (
-    <div>
+    <div
+      className="cursor-pointer"
+      onClick={() => router.push(`/products/${id}?searchQuery=${category}`)}
+    >
       <div className="card bg-white w-64 m-2 rounded-lg shadow-lg">
         <div className="top">
           <Image
@@ -15,7 +18,7 @@ function ProductCard({ img, title, price, rating }) {
             height={200}
           />
         </div>
-        <div className="bottom flex flex-col justify-center items-start p-3 bg-">
+        <div className="bottom flex flex-col justify-center items-start p-3">
           <div className="title font-semibold text-xs my-1">{title}</div>
           {/* <div className="category text-xs font-light my-1">
             5.4 cm (6.1-inch) display1
@@ -23,7 +26,7 @@ function ProductCard({ img, title, price, rating }) {
 
           <div className="pricing flex items-center">
             {" "}
-            <div className="price ">price: 873</div>
+            <div className="price ">price: {price}</div>
           </div>
           <Rating rating={rating} />
           <div className="flex items-center my-2">

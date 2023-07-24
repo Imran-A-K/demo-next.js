@@ -2,9 +2,12 @@
 import Image from "next/image";
 import Rating from "../Rating/page";
 
-function Card({ img, title, price, rating }) {
+function Card({ img, title, price, rating, router, id, category }) {
   return (
-    <div>
+    <div
+      className="cursor-pointer"
+      onClick={() => router.push(`/products/${id}?searchQuery=${category}`)}
+    >
       <div className="card bg-white w-[200px] m-2 rounded-lg shadow-lg">
         <div className="top">
           <Image

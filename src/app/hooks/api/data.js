@@ -103,3 +103,36 @@ export const useFullProducts = () => {
   });
   return [fullProducts];
 };
+
+export const useGetProduct = (id) => {
+  const {
+    data: product = {},
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["productId"],
+    queryFn: async () => {
+      const response = await axios.get(`https://dummyjson.com/products/${id}`);
+      return response.data;
+    },
+  });
+  return [product, refetch, isLoading];
+};
+
+export const useGetCategoryWiseProduct = (id, category) => {
+  const { data: productsOfCategory = {}, isLoading: categoryLoading } =
+    useQuery({
+      queryKey: ["categoryOfProductWithOutProduct"],
+      queryFn: async () => {
+        const response = await axios.get(
+          `https://dummyjson.com/products/category/${category}`
+        );
+        // return response.data;
+        const relatedProducts = response.data.products.filter(
+          (product) => product.id !== id
+        );
+        return relatedProducts;
+      },
+    });
+  return [productsOfCategory, categoryLoading];
+};
