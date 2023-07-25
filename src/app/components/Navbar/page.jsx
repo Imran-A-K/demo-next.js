@@ -82,7 +82,7 @@ function Navbar() {
             <span className="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
           </span> */}
         </Link>
-        <Link className="hidden lg:block" href="">
+        <Link className="hidden lg:block" href="/login">
           {/* focus:bg-indigo-700 */}
           <button className="block mx-auto bg-black hover:bg-gray-700  text-white rounded-lg px-3 py-2 font-semibold">
             Login
@@ -142,7 +142,7 @@ function Navbar() {
                 className="text-white"
               />
             </span>
-            <Link className="" href="" onClick={() => setIsOpen(!isOpen)}>
+            <Link className="" href="/login" onClick={() => setIsOpen(!isOpen)}>
               <button className="block mx-auto bg-white hover:bg-indigo-700 focus:bg-indigo-700 text-black rounded-lg px-3 py-2 font-semibold">
                 Login
               </button>
