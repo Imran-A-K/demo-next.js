@@ -1,5 +1,8 @@
 "use client";
+import AuthenticatorButton from "@/app/components/AuthenticatorButton/page";
 import Container from "@/app/components/Container/page";
+import InputComponent from "@/app/components/InputComponent/page";
+import PasswordInput from "@/app/components/PasswordInput/page";
 import Link from "next/link";
 import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
@@ -29,13 +32,13 @@ function Login() {
                   //   onSubmit={handleSubmit(onSubmit)}
                   className="mx-auto max-w-xs"
                 >
-                  <input
-                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                    type="text"
-                    placeholder="Email"
-
-                    // aria-invalid={errors.email ? "true" : "false"}
+                  <InputComponent
+                    ComponentId="Email"
+                    labelTitle="Please Enter Your Email"
+                    placeHolder="Email"
+                    type="Email"
                   />
+
                   {/* {errors?.email && (
                     <p
                       className="pl-1 pt-2 flex items-center gap-2 text-base text-red-500"
@@ -44,57 +47,19 @@ function Login() {
                       <BiError /> {errors.email.message}
                     </p>
                   )} */}
-                  <div className="relative">
-                    <input
-                      className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                      type={showPassword === false ? "password" : "text"}
-                      placeholder="Password"
-                      //   {...register("password", {
-                      //     required: "Please Enter your password.",
-                      //   })}
-                      //   aria-invalid={errors.password ? "true" : "false"}
-                    />
-                    <div className="cursor-pointer text-2xl absolute right-3 top-9 z-10 ">
-                      {showPassword === false ? (
-                        <AiFillEye
-                          onClick={() => setShowPassword(!showPassword)}
-                        />
-                      ) : (
-                        <AiFillEyeInvisible
-                          onClick={() => setShowPassword(!showPassword)}
-                        />
-                      )}
-                    </div>
-                    {/* {errors?.password && (
-                      <p
-                        className="pl-1 pt-2 flex items-center gap-2 text-base text-red-500"
-                        role="alert"
-                      >
-                        <BiError /> {errors.password.message}
-                      </p>
-                    )} */}
-                  </div>
-                  <button className="mt-5 tracking-wide font-semibold bg-black hover:bg-gray-700 text-white w-full py-4 rounded-lg active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01] flex items-center justify-center focus:shadow-outline focus:outline-none">
-                    <svg
-                      className="w-6 h-6 -ml-2"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                      <circle cx="8.5" cy="7" r="4" />
-                      <path d="M20 8v6M23 11h-6" />
-                    </svg>
-                    <span className="ml-3">Sign In</span>
-                  </button>
+                  <PasswordInput
+                    PassWordVisibleIcon={AiFillEye}
+                    PassWordInvisibleIcon={AiFillEyeInvisible}
+                    showPassword={showPassword}
+                    setShowPassword={setShowPassword}
+                    ComponentId={"password"}
+                    labelTitle={"Please Enter Your Password"}
+                  />
+
+                  <AuthenticatorButton title={"Sign In"} />
                   <p className="mt-6 text-base text-gray-600 text-center font-semibold">
                     Don&apos;t have an account?{" "}
-                    <Link
-                      href="/register"
-                      className=" text-violet-600 font-bold"
-                    >
+                    <Link href="/register" className=" text-black font-bold">
                       Register
                     </Link>
                   </p>
