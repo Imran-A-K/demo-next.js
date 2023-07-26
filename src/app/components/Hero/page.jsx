@@ -16,7 +16,7 @@ function Hero() {
           <h1 className="md:text-4xl sm:text-3xl text-2xl font-bold py-2">
             One stop tech solution
           </h1>
-          <p className="tracking-tighter text-gray-800 font-medium">
+          <p className=" text-gray-800 font-medium">
             Welcome to GizmoHub, your ultimate destination for cutting-edge
             mobile technology. Explore a diverse range of top-of-the-line
             gadgets, smartphones, accessories, and wearable tech. Embrace the

@@ -1,6 +1,6 @@
 "use client";
 import "./globals.css";
-import { Inter, Roboto_Mono } from "next/font/google";
+import { Inter, Roboto, Roboto_Mono } from "next/font/google";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
@@ -9,6 +9,13 @@ const roboto_mono = Roboto_Mono({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-roboto-mono",
+});
+const roboto = Roboto({
+  weight: ["100", "300", "400", "500", "700", "900"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-roboto",
 });
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +28,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <QueryClientProvider client={queryClient}>
-        <body className={`${inter.variable} ${roboto_mono.variable}`}>
+        <body className={`${inter.variable} ${roboto.variable}`}>
           {children}
         </body>
       </QueryClientProvider>

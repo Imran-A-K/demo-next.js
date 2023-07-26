@@ -1,8 +1,11 @@
 "use client";
 import AuthenticatorButton from "@/app/components/AuthenticatorButton/page";
 import Container from "@/app/components/Container/page";
+import FormError from "@/app/components/FormError/page";
 import InputComponent from "@/app/components/InputComponent/page";
 import PasswordInput from "@/app/components/PasswordInput/page";
+import { loginSchema } from "@/app/components/schema/page";
+import { useFormik } from "formik";
 import Link from "next/link";
 import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
@@ -10,10 +13,23 @@ import { BiError } from "react-icons/bi";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues,
+      validationSchema: loginSchema,
+      onSubmit: (values, action) => {
+        console.log(values);
+        action.resetForm();
+      },
+    });
   return (
     <Container>
       <div className="min-h-screen bg-white text-gray-900 flex justify-center font-mono">
-        <div className="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex flex-row-reverse justify-center flex-1">
+        <div className="max-w-screen-xl m-0 sm:m-20 bg-white md:shadow-md md:border-2 border-opacity-50 md:rounded-lg flex flex-row-reverse justify-center flex-1">
           <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <div className="mt-12 flex flex-col items-center">
               <h1 className="text-2xl xl:text-3xl font-bold pb-4">
@@ -28,16 +44,20 @@ function Login() {
                     {firebaseError}
                   </span>
                 </div> */}
-                <form
-                  //   onSubmit={handleSubmit(onSubmit)}
-                  className="mx-auto max-w-xs"
-                >
+                <form onSubmit={handleSubmit} className="mx-auto max-w-xs">
                   <InputComponent
                     ComponentId="Email"
-                    labelTitle="Please Enter Your Email"
-                    placeHolder="Email"
+                    labelTitle="Email"
+                    placeHolder="Ex: email@domain.com"
                     type="Email"
+                    name="email"
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    value={values.email}
                   />
+                  {errors.email && touched.email ? (
+                    <FormError ErrorImg={BiError}>{errors.email}</FormError>
+                  ) : null}
 
                   {/* {errors?.email && (
                     <p
@@ -53,8 +73,16 @@ function Login() {
                     showPassword={showPassword}
                     setShowPassword={setShowPassword}
                     ComponentId={"password"}
-                    labelTitle={"Please Enter Your Password"}
+                    labelTitle={"Password"}
+                    placeholder={"Please Enter Your Password"}
+                    name="password"
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    value={values.password}
                   />
+                  {errors.password && touched.password ? (
+                    <FormError ErrorImg={BiError}>{errors.password}</FormError>
+                  ) : null}
 
                   <AuthenticatorButton title={"Sign In"} />
                   <p className="mt-6 text-base text-gray-600 text-center font-semibold">
@@ -67,7 +95,7 @@ function Login() {
               </div>
             </div>
           </div>
-          <div className="flex-1 bg-gray-100 text-center hidden lg:flex sm:rounded-l-lg">
+          <div className="flex-1 bg-transparent text-center hidden lg:flex sm:rounded-l-lg">
             <div className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat bg-[url('/images/Authentication.jpg')]"></div>
           </div>
         </div>

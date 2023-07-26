@@ -6,6 +6,10 @@ function PasswordInput({
   ComponentId,
   labelTitle,
   placeholder,
+  name,
+  handleChange,
+  handleBlur,
+  value,
 }) {
   return (
     <div className="relative my-5">
@@ -13,9 +17,13 @@ function PasswordInput({
         {labelTitle}
       </label>
       <input
-        className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+        className="w-full px-4 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
         type={showPassword === false ? "password" : "text"}
         placeholder={placeholder ? placeholder : "Password"}
+        value={value}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        name={name}
         //   {...register("password", {
         //     required: "Please Enter your password.",
         //   })}

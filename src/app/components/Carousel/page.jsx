@@ -92,7 +92,7 @@ function Carousel({ title, data, category }) {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          {data.map((product) => (
+          {data?.map((product) => (
             <Card
               key={product.id}
               img={product.images[0]}

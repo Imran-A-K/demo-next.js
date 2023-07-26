@@ -129,7 +129,7 @@ export const useGetCategoryWiseProduct = (id, category) => {
         );
         // return response.data;
         const relatedProducts = response.data.products.filter(
-          (product) => product.id !== id
+          (product) => product.id != id
         );
         return relatedProducts;
       },
