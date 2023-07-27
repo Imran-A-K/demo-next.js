@@ -13,6 +13,7 @@ import Image from "next/image";
 import FormError from "@/app/components/FormError/page";
 import { signUpSchema } from "@/app/components/schema/page";
 import { useFormik } from "formik";
+// import Swal from "sweetalert2";
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false);

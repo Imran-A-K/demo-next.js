@@ -136,3 +136,20 @@ export const useGetCategoryWiseProduct = (id, category) => {
     });
   return [productsOfCategory, categoryLoading];
 };
+
+export const useGetCart = () => {
+  const {
+    data: cart = [],
+    refetch: relaodCart,
+    isLoading: cartLoading,
+  } = useQuery({
+    queryKey: ["cartData"],
+    queryFn: async () => {
+      const cart = localStorage.getItem("cart")
+        ? JSON.parse(localStorage.getItem("cart"))
+        : null;
+      return cart;
+    },
+  });
+  return [cart, cartLoading, relaodCart];
+};

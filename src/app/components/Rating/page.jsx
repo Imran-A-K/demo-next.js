@@ -22,7 +22,7 @@ const Rating = ({ rating }) => {
 
   return (
     <div className="flex items-center gap-4">
-      <span className="flex">{renderStars()}</span> {rating}
+      <span className="flex">{renderStars()}</span> ({rating})
     </div>
   );
 };

@@ -2,7 +2,17 @@ import Image from "next/image";
 import React from "react";
 import Rating from "../Rating/page";
 
-function ProductCard({ img, title, price, rating, id, router, category }) {
+function ProductCard({
+  img,
+  title,
+  price,
+  rating,
+  id,
+  router,
+  category,
+  product,
+  addToCart,
+}) {
   return (
     <div
       className="cursor-pointer"
@@ -30,7 +40,10 @@ function ProductCard({ img, title, price, rating, id, router, category }) {
           </div>
           <Rating rating={rating} />
           <div className="flex items-center my-2">
-            <button className="border px-3 py-1 text-sm text-white bg-gray-800 rounded-lg ">
+            <button
+              onClick={() => addToCart(product)}
+              className="border px-3 py-1 text-sm text-white bg-gray-800 rounded-lg "
+            >
               Add to Cart
             </button>
           </div>

@@ -5,7 +5,7 @@ import React from "react";
 import Container from "../Container/page";
 import { useRouter } from "next/navigation";
 
-function Carousel({ title, data, category }) {
+function Carousel({ title, data, category, addToCart }) {
   const router = useRouter();
   // console.log(data);
   const scrollLeft = () => {
@@ -87,7 +87,7 @@ function Carousel({ title, data, category }) {
         </div>
         <div
           id={`${category}`}
-          className="carousel p-4 gap-14 flex items-center justify-start overflow-x-hidden scroll-smooth max-w-full max-sm:w-[280px]"
+          className="carousel p-4 gap-16 flex items-center justify-start overflow-x-hidden scroll-smooth max-w-full max-sm:w-[280px]"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -102,6 +102,8 @@ function Carousel({ title, data, category }) {
               router={router}
               id={product.id}
               category={product.category}
+              product={product}
+              addToCart={addToCart}
             />
           ))}
           {/* <div>

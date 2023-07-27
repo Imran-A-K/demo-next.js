@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import addPercentage from "@/app/hooks/customFunctions/functions";
 import ProductImages from "@/app/components/ProductImages/page";
 import Carousel from "@/app/components/Carousel/page";
+import addToCart from "@/app/hooks/cartFunctions/cartFunctions";
 
 function Product({ params, searchParams }) {
   const [product, refetch, isLoading] = useGetProduct(params.productId);
@@ -15,7 +16,7 @@ function Product({ params, searchParams }) {
     params.productId,
     searchParams.searchQuery
   );
-  // console.log(productsOfCategory);
+  console.log(productsOfCategory);
   const {
     images,
     category,
@@ -81,7 +82,12 @@ function Product({ params, searchParams }) {
                   </p>
                 </div>
                 <div className="flex items-center my-2">
-                  <button className="border px-3 py-1 text-lg text-white bg-gray-800 rounded-lg ">
+                  <button
+                    onClick={() => {
+                      addToCart(product);
+                    }}
+                    className="border px-5 py-1 text-lg text-white bg-gray-800 rounded-lg "
+                  >
                     Add to Cart
                   </button>
                 </div>
@@ -91,11 +97,13 @@ function Product({ params, searchParams }) {
               </div>
             </div>
             <div>
-              <Carousel
-                title={"Related"}
-                data={productsOfCategory}
-                category={`${searchParams}1`}
-              />
+              {!categoryLoading && (
+                <Carousel
+                  title={"Related"}
+                  data={productsOfCategory}
+                  category={`${searchParams}1`}
+                />
+              )}
             </div>
           </div>
         )}

@@ -11,6 +11,7 @@ import {
 } from "@/app/hooks/api/data";
 import ProductCard from "@/app/components/Product-card/page";
 import { useRouter } from "next/navigation";
+import addToCart from "@/app/hooks/cartFunctions/cartFunctions";
 
 function Products() {
   const [fullProducts] = useFullProducts();
@@ -136,7 +137,7 @@ function Products() {
             </svg>
             <input
               className="bg-gray-100 outline-none"
-              type="text"
+              type="search"
               placeholder="Search your product..."
               value={searchText}
               onChange={(event) => {
@@ -169,6 +170,8 @@ function Products() {
                 rating={product.rating}
                 router={router}
                 category={product.category}
+                product={product}
+                addToCart={addToCart}
               ></ProductCard>
             ))}
           </div>

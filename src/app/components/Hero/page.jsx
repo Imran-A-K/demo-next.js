@@ -1,8 +1,10 @@
 import Image from "next/image";
 import React from "react";
 import heroImage from "../../../../public/images/HeroSection.png";
+import { useRouter } from "next/navigation";
 
 function Hero() {
+  const router = useRouter();
   return (
     <section className="w-full lg:px-32 md:px-12 px-8 py-5 bg-gray-100 font-mono">
       <div
@@ -23,7 +25,12 @@ function Hero() {
             future of seamless connectivity and endless possibilities with us
             today. Elevate your tech experience at GizmoHub!
           </p>
-          <button className="bg-black text-white w-[200px] rounded-md font-bold my-6 mx-auto md:mx-0 py-3">
+          <button
+            onClick={() => {
+              router.push("/products");
+            }}
+            className="bg-black text-white w-[200px] rounded-md font-bold my-6 mx-auto md:mx-0 py-3"
+          >
             Get Started
           </button>
         </div>

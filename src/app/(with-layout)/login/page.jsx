@@ -10,6 +10,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { BiError } from "react-icons/bi";
+// import Swal from "sweetalert2";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
