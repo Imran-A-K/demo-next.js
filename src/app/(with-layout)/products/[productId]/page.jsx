@@ -16,7 +16,7 @@ function Product({ params, searchParams }) {
     params.productId,
     searchParams.searchQuery
   );
-  console.log(productsOfCategory);
+  // console.log(productsOfCategory);
   const {
     images,
     category,

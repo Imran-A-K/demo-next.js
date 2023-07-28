@@ -110,7 +110,7 @@ export const useGetProduct = (id) => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["productId"],
+    queryKey: [`productId: ${id}`],
     queryFn: async () => {
       const response = await axios.get(`https://dummyjson.com/products/${id}`);
       return response.data;
