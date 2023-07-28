@@ -6,7 +6,8 @@ import { useGetCart } from "@/app/hooks/api/data";
 import React from "react";
 
 function Cart() {
-  const [cart, cartLoading, relaodCart] = useGetCart();
+  const [cart, cartLoading, reloadCart] = useGetCart();
+
   return (
     <Container>
       <div className="px-4 py-16 sm:px-6 lg:px-8">
@@ -27,14 +28,14 @@ function Cart() {
                 ))} */}
                 {/* <CartItem key={item.id} data={item} /> */}
                 {cart?.map((item) => (
-                  <CartCard key={item.id} item={item} />
+                  <CartCard key={item.id} item={item} reloadCart={reloadCart} />
                 ))}
                 {/* <CartCard />
               <CartCard /> */}
               </ul>
             </div>
           )}
-          <Summary />
+          {!cartLoading && <Summary cart={cart} reloadCart={reloadCart} />}
         </div>
       </div>
     </Container>

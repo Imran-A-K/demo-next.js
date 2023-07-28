@@ -14,12 +14,12 @@ function Card({
   product,
   addToCart,
 }) {
-  const [cart, cartLoading, relaodCart] = useGetCart();
+  const [cart, cartLoading, reloadCart] = useGetCart();
   const alreadyAddedToCart = !!cart?.find((item) => item.id === id);
   const handleAddToCart = (event, product) => {
     event.stopPropagation();
     addToCart(product);
-    relaodCart();
+    reloadCart();
   };
   return (
     <div

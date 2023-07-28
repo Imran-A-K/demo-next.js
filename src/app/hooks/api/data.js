@@ -140,7 +140,7 @@ export const useGetCategoryWiseProduct = (id, category) => {
 export const useGetCart = () => {
   const {
     data: cart = [],
-    refetch: relaodCart,
+    refetch: reloadCart,
     isLoading: cartLoading,
   } = useQuery({
     queryKey: ["cartData"],
@@ -151,5 +151,5 @@ export const useGetCart = () => {
       return cart;
     },
   });
-  return [cart, cartLoading, relaodCart];
+  return [cart, cartLoading, reloadCart];
 };

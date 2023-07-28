@@ -3,10 +3,13 @@ export const CartButton = ({
   children,
   disabled,
   type = "button",
+  handleCheckOut,
   ...props
 }) => {
   return (
     <button
+      onClick={() => handleCheckOut()}
+      disabled={disabled}
       className={`
           w-auto 
           rounded-full 
