@@ -17,7 +17,18 @@ function Cart() {
             "Loading"
           ) : (
             <div className="lg:col-span-7">
-              {cart.length === 0 && (
+              {/* {cart?.length === 0 && (
+                <p className="text-neutral-500 text-lg">
+                  No items added to cart.
+                </p>
+              )} */}
+              {cart ? (
+                cart?.length === 0 && (
+                  <p className="text-neutral-500 text-lg">
+                    No items added to cart.
+                  </p>
+                )
+              ) : (
                 <p className="text-neutral-500 text-lg">
                   No items added to cart.
                 </p>

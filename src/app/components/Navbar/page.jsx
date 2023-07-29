@@ -39,8 +39,11 @@ const CustomMobileLink = ({ href, title, className = "", toggle }) => {
     </Link>
   );
 };
-function Navbar() {
+function Navbar({ sideBarIsOpen, setSideBarIsOpen }) {
+  // console.log(sideBarIsOpen);
   const [isOpen, setIsOpen] = useState(false);
+  // const [sideBarIsOpen, setSideBarIsOpen] = useState(false);
+  // console.log(isOpen);
   const pathName = usePathname();
   // console.log(pathName !== "/");
   const [cart, cartLoading] = useGetCart();
@@ -51,7 +54,7 @@ function Navbar() {
     <header
       className={`${
         pathName !== "/" && "bg-blend-lighten border-b-stone-200"
-      } bg-gray-100 flex  items-center place-items-center justify-between w-full max-w-full lg:px-32 md:px-12 px-8 py-5 sticky top-0 z-50 font-bold text-xl font-mono `}
+      } bg-gray-100 flex  items-center place-items-center justify-between w-full max-w-full lg:px-32 md:px-12 px-8 py-5 sticky top-0 z-20 font-bold text-xl font-mono `}
     >
       <nav className="lg:pl-10 relative">
         <Link className="lg:pl-10" href={"/"}>
@@ -63,6 +66,13 @@ function Navbar() {
         <CustomLink href={"/products"} title={"Products"} />
       </nav>
       <nav className="flex items-center justify-between">
+        <button
+          onClick={() => {
+            setSideBarIsOpen(true);
+          }}
+        >
+          click
+        </button>
         <Link className="flex max-lg:hidden mr-6 items-center" href={"/cart"}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

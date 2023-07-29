@@ -23,13 +23,13 @@ function Card({
   };
   return (
     <div
-      className="cursor-pointer"
+      className="cursor-pointer group transition"
       onClick={() => router.push(`/products/${id}?searchQuery=${category}`)}
     >
       <div className="card bg-white w-[200px] m-2 rounded-lg shadow-lg">
         <div className="top">
           <Image
-            className="w-[200px] h-[200px] object-cover  p-2"
+            className="w-[200px] h-[200px] object-cover group-hover:scale-105 transition duration-300 p-2"
             src={img}
             alt={`${id}`}
             width={200}

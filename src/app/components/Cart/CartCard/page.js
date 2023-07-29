@@ -29,8 +29,8 @@ function CartCard({ item, reloadCart }) {
       <li className="flex py-6 border-b">
         <div className="relative flex flex-col gap-2 h-24 w-24 rounded-md overflow-hidden sm:h-28 sm:w-28">
           <Image
-            width={200}
-            height={200}
+            width={300}
+            height={300}
             src={
               images[0] ||
               "https://drive.google.com/uc?id=18KkAVkGFvaGNqPy2DIvTqmUH_nk39o3z"
@@ -38,7 +38,7 @@ function CartCard({ item, reloadCart }) {
             alt="kjnf"
             className="h-2/3 w-full  object-center rounded-b-md object-scale-down"
           />
-          <div className="flex z-30 justify-center">
+          <div className="flex z-10 justify-center">
             <svg
               className={`fill-current w-3 cursor-pointer ${
                 quantity > 1 ? "text-gray-600" : "text-gray-400"
