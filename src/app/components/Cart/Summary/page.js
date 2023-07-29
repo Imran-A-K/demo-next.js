@@ -3,6 +3,7 @@ import { useGetCart } from "@/app/hooks/api/data";
 import { CartButton } from "../CartButton/page";
 import { calculateCart } from "@/app/hooks/cartFunctions/cartFunctions";
 import Swal from "sweetalert2";
+
 export const Summary = ({ cart, reloadCart }) => {
   //   console.log(cart);
   const { subtotal, totalItem, deliveryCharges, tax, grandTotal } =
@@ -23,9 +24,11 @@ export const Summary = ({ cart, reloadCart }) => {
       hideClass: {
         popup: "animate__animated animate__fadeOutUp",
       },
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        Swal.fire("Success!", "Your order has been placed.", "success");
+        await Swal.fire("Success!", "Your order has been placed.", "success");
+        localStorage.setItem("cart", JSON.stringify([]));
+        reloadCart();
       }
     });
   };
