@@ -22,7 +22,7 @@ export const CartButton = ({
           disabled:opacity-50
           text-white
           font-semibold
-          hover:opacity-75
+          hover:opacity-90
           transition
           ${disabled && "opacity-75 cursor-not-allowed"}
           ${className}

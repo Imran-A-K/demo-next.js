@@ -5,8 +5,14 @@ import { HiOutlineArrowNarrowRight, HiOutlineTrash } from "react-icons/hi";
 import SideBarCartItem from "../SideBarCartItem/page";
 import Link from "next/link";
 import { CartButton } from "../Cart/CartButton/page";
+import { useRouter } from "next/navigation";
 
 function SideCart({ sideBarIsOpen, setSideBarIsOpen }) {
+  const router = useRouter();
+  const handleCheckOut = () => {
+    router.push("/cart");
+    setSideBarIsOpen(false);
+  };
   const [cart, cartLoading, reloadCart] = useGetCart();
   return (
     <>
@@ -59,11 +65,11 @@ function SideCart({ sideBarIsOpen, setSideBarIsOpen }) {
           </div>
           <Link href={"/cart"}>
             <CartButton
-              // handleCheckOut={handleCheckOut}
+              handleCheckOut={handleCheckOut}
               disabled={cart.length === 0}
               className="w-full max-w-md"
             >
-              Confirm Order
+              Check Out
             </CartButton>
           </Link>
         </div>
