@@ -35,7 +35,7 @@ function CartCard({ item, reloadCart }) {
               images[0] ||
               "https://drive.google.com/uc?id=18KkAVkGFvaGNqPy2DIvTqmUH_nk39o3z"
             }
-            alt="kjnf"
+            alt={`${title} + ${brand}`}
             className="h-2/3 w-full  object-center rounded-b-md object-scale-down"
           />
           <div className="flex z-10 justify-center">
