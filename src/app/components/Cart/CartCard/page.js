@@ -36,9 +36,9 @@ function CartCard({ item, reloadCart }) {
               "https://drive.google.com/uc?id=18KkAVkGFvaGNqPy2DIvTqmUH_nk39o3z"
             }
             alt={`${title} + ${brand}`}
-            className="h-2/3 w-full  object-center rounded-b-md object-scale-down"
+            className="h-full w-full  object-center rounded-b-md object-fill"
           />
-          <div className="flex z-10 justify-center">
+          {/* <div className="flex z-10 justify-center">
             <svg
               className={`fill-current w-3 cursor-pointer ${
                 quantity > 1 ? "text-gray-600" : "text-gray-400"
@@ -64,7 +64,7 @@ function CartCard({ item, reloadCart }) {
             >
               <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
             </svg>
-          </div>
+          </div> */}
         </div>
         <div className="flex flex-1 justify-start pl-6 max-[320px]:pl-4">
           <div className="flex flex-col flex-1 md:gap-1 max-sm:justify-between">
@@ -74,10 +74,12 @@ function CartCard({ item, reloadCart }) {
             </p>
             <div className="flex gap-2 items-center max-sm:gap-1">
               <span className="font-medium max-[321px]:text-[10px]">
-                Category:{" "}
+                {/* Category:{" "} */}
+                Quantity:{" "}
               </span>
               <span className="capitalize font-medium max-[321px]:text-[11px]">
-                {category}
+                {/* {category} */}
+                {quantity}
               </span>
 
               {/* <div

@@ -17,6 +17,9 @@ function ImageUpload({
         placeholder={`${placeHolder}`}
         accept="image/*"
         onChange={handleImageChange}
+
+        // value={ref.current.value}
+
         // aria-invalid={errors.email ? "true" : "false"}
       />
     </div>

@@ -1,8 +1,11 @@
 import React from "react";
 
-function AuthenticatorButton({ title }) {
+function AuthenticatorButton({ title, type }) {
   return (
-    <button className="mt-5 tracking-wide font-semibold bg-black hover:bg-gray-700 text-white w-full py-4 rounded-lg active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01] flex items-center justify-center focus:shadow-outline focus:outline-none">
+    <button
+      type={type}
+      className="mt-5 tracking-wide font-semibold bg-black hover:bg-gray-700 text-white w-full py-4 rounded-lg active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01] flex items-center justify-center focus:shadow-outline focus:outline-none"
+    >
       <svg
         className="w-6 h-6 -ml-2"
         fill="none"

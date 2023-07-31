@@ -2,6 +2,7 @@
 import "./globals.css";
 import { Inter, Roboto, Roboto_Mono } from "next/font/google";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <QueryClientProvider client={queryClient}>
         <body className={`${inter.variable} ${roboto.variable}`}>
+          <Toaster position="top-center" reverseOrder={false} />
           {children}
         </body>
       </QueryClientProvider>

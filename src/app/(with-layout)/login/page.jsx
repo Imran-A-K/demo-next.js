@@ -5,15 +5,32 @@ import FormError from "@/app/components/FormError/page";
 import InputComponent from "@/app/components/InputComponent/page";
 import PasswordInput from "@/app/components/PasswordInput/page";
 import { loginSchema } from "@/app/components/schema/page";
+import { verifyUser } from "@/app/hooks/authenticationFunctions/page";
 import { useFormik } from "formik";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { BiError } from "react-icons/bi";
 // import Swal from "sweetalert2";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  const saveSettings = (settings, userVerification) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const isSuccess = settings;
+
+        if (isSuccess) {
+          resolve(settings);
+        } else {
+          reject(new Error(userVerification));
+        }
+      }, 1000);
+    });
+  };
   const initialValues = {
     email: "",
     password: "",
@@ -22,9 +39,37 @@ function Login() {
     useFormik({
       initialValues,
       validationSchema: loginSchema,
-      onSubmit: (values, action) => {
-        console.log(values);
-        action.resetForm();
+      onSubmit: async (values, action) => {
+        // console.log(values);
+        const userVerification = verifyUser({ ...values });
+        try {
+          if (userVerification === "User Verified") {
+            // toast.success(register);
+            await toast.promise(saveSettings(true, userVerification), {
+              loading: "Verifying User...",
+              success: <b>{userVerification}</b>,
+              error: <b>Could not save.</b>,
+            });
+
+            const userIntendedDestination = localStorage.getItem(
+              "userIntendedDestination"
+            );
+            router.push(userIntendedDestination ?? "/");
+            localStorage.removeItem("userIntendedDestination");
+            // action.resetForm();
+          } else {
+            // toast.error(register);
+            await toast.promise(saveSettings(false, userVerification), {
+              loading: "Veryfying User...",
+              success: <b>{userVerification}</b>,
+              error: <b>{userVerification}</b>,
+            });
+          }
+        } catch (error) {
+          // console.log(error);
+          // return;
+        }
+        // action.resetForm();
       },
     });
   return (
@@ -85,7 +130,7 @@ function Login() {
                     <FormError ErrorImg={BiError}>{errors.password}</FormError>
                   ) : null}
 
-                  <AuthenticatorButton title={"Sign In"} />
+                  <AuthenticatorButton type={"submit"} title={"Sign In"} />
                   <p className="mt-6 text-base text-gray-600 text-center font-semibold">
                     Don&apos;t have an account?{" "}
                     <Link href="/register" className=" text-black font-bold">

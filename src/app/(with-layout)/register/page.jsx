@@ -5,7 +5,7 @@ import ImageUpload from "@/app/components/ImageUpload/page";
 import InputComponent from "@/app/components/InputComponent/page";
 import PasswordInput from "@/app/components/PasswordInput/page";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { BiError } from "react-icons/bi";
 import dummyUser from "../../../../public/images/dummyUser.png";
@@ -13,29 +13,87 @@ import Image from "next/image";
 import FormError from "@/app/components/FormError/page";
 import { signUpSchema } from "@/app/components/schema/page";
 import { useFormik } from "formik";
+import { registerUser } from "@/app/hooks/authenticationFunctions/page";
+import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 // import Swal from "sweetalert2";
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
   const [selectedImage, setSelectedImage] = useState(dummyUser);
+
+  const router = useRouter();
   const initialValues = {
     name: "",
     email: "",
     password: "",
     confirm_password: "",
   };
+  const saveSettings = (settings, register) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const isSuccess = settings;
+
+        if (isSuccess) {
+          resolve(settings);
+        } else {
+          reject(new Error(register));
+        }
+      }, 1000);
+    });
+  };
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues,
       validationSchema: signUpSchema,
-      onSubmit: (values, action) => {
-        console.log({ ...values, userImage: selectedImage });
-        action.resetForm();
+      onSubmit: async (values, action) => {
+        // console.log({ ...values, userImage: selectedImage });
+        const register = registerUser({ ...values, userImage: selectedImage });
+        // console.log(register);
+        // console.log(event.target.uploadedImage);
+        try {
+          if (register === "User created successfully") {
+            // toast.success(register);
+            await toast.promise(saveSettings(true, register), {
+              loading: "Registering User...",
+              success: <b>{register}</b>,
+              error: <b>Could not save.</b>,
+            });
+            // const inputElement = document.getElementById("uploadedImage");
+            // const newInputElement = document.createElement("input");
+            // newInputElement.type = "file";
+            // newInputElement.id = "uploadedImage";
+
+            // inputElement.parentNode.replaceChild(newInputElement, inputElement);
+            // setSelectedImage(dummyUser);
+            // console.log(event.target.uploadedImage);
+            const userIntendedDestination = localStorage.getItem(
+              "userIntendedDestination"
+            );
+            router.push(userIntendedDestination ?? "/");
+            localStorage.removeItem("userIntendedDestination");
+            // action.resetForm();
+          } else {
+            // toast.error(register);
+            await toast.promise(saveSettings(false, register), {
+              loading: "Registering User...",
+              success: <b>{register}</b>,
+              error: <b>{register}</b>,
+            });
+          }
+        } catch (error) {
+          // console.log(error);
+          // return;
+        }
+
+        // setSelectedImage(dummyUser);
+        // action.resetForm();
       },
     });
   const handleImageChange = (event) => {
     const file = event.target.files[0];
+    // console.log(file.name);
 
     if (file) {
       const reader = new FileReader();
@@ -71,7 +129,11 @@ function Register() {
                     className="h-24 w-24 border-2 rounded-full"
                   />
                 </div>
-                <form onSubmit={handleSubmit} className="mx-auto max-w-xs">
+                <form
+                  onSubmit={handleSubmit}
+                  autoComplete="off"
+                  className="mx-auto max-w-xs"
+                >
                   <InputComponent
                     ComponentId="Name"
                     labelTitle="Name"
@@ -148,7 +210,7 @@ function Register() {
                     handleImageChange={handleImageChange}
                   />
 
-                  <AuthenticatorButton title={"Sign Up"} />
+                  <AuthenticatorButton type={"submit"} title={"Sign Up"} />
                   <p className="mt-6 text-base text-gray-600 text-center font-semibold">
                     Already have an account?{" "}
                     <Link href="/login" className=" text-black font-bold">
