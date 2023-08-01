@@ -61,11 +61,17 @@ function Navbar({ sideBarIsOpen, setSideBarIsOpen }) {
           GizmoHub
         </Link>
       </nav>
-      <nav className="hidden lg:flex items-center gap-x-8">
+      {/* <nav className="hidden lg:flex items-center gap-x-8">
         <CustomLink href={"/"} title={"Home"} />
         <CustomLink href={"/products"} title={"Products"} />
-      </nav>
-      <nav className="flex items-center justify-between">
+      </nav> */}
+      <nav className="flex items-center justify-between gap-x-8">
+        <CustomLink href={"/"} title={"Home"} className="max-md:hidden" />
+        <CustomLink
+          href={"/products"}
+          title={"Products"}
+          className="max-md:hidden"
+        />
         <button
           onClick={() => {
             setSideBarIsOpen(true);
@@ -133,7 +139,12 @@ function Navbar({ sideBarIsOpen, setSideBarIsOpen }) {
             Login
           </button>
         </Link>
-        <Link className="lg:hidden flex mr-6 items-center" href={"#"}>
+        <button
+          className="lg:hidden flex lg:mr-6 items-center cursor-pointer"
+          onClick={() => {
+            setSideBarIsOpen(true);
+          }}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 cursor-pointer"
@@ -164,9 +175,9 @@ function Navbar({ sideBarIsOpen, setSideBarIsOpen }) {
             <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
           </span> */}
-        </Link>
+        </button>
         <button
-          className="lg:hidden flex flex-col justify-center items-center"
+          className="md:hidden flex flex-col justify-center items-center"
           onClick={() => setIsOpen(!isOpen)}
         >
           <span

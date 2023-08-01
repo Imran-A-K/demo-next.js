@@ -13,6 +13,7 @@ function Card({
   category,
   product,
   addToCart,
+  className,
 }) {
   const [cart, cartLoading, reloadCart] = useGetCart();
   const alreadyAddedToCart = !!cart?.find((item) => item.id === id);
@@ -26,14 +27,14 @@ function Card({
       className="cursor-pointer group transition"
       onClick={() => router.push(`/products/${id}?searchQuery=${category}`)}
     >
-      <div className="card bg-white w-[200px] m-2 rounded-lg shadow-lg">
+      <div className="card bg-white w-[200px] sm:w-[300px] m-2 rounded-lg shadow-lg">
         <div className="top">
           <Image
-            className="w-[200px] h-[200px] object-cover group-hover:scale-105 transition duration-300 p-2"
+            className={`w-[200px] h-[200px] sm:w-[300px] rounded-xl object-fill group-hover:scale-105 transition duration-300 p-2 ${className}`}
             src={img}
             alt={`${id}`}
-            width={200}
-            height={200}
+            width={300}
+            height={300}
           />
         </div>
         <div className="bottom flex flex-col justify-center items-start p-3 bg-">

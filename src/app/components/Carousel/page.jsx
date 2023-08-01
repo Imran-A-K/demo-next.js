@@ -57,7 +57,7 @@ function Carousel({ title, data, category, addToCart }) {
             &nbsp;
           </span>
         </div>
-        <div className="max-sm:hidden absolute right-24 top-5">
+        {/* <div className="max-sm:hidden absolute right-24 top-5">
           <button
             onClick={scrollLeft}
             className="p-2 m-2 rounded-full bg-white"
@@ -70,8 +70,32 @@ function Carousel({ title, data, category, addToCart }) {
           >
             <FiChevronRight className="text-xl font-bold" />
           </button>
-        </div>
-        <div className="absolute right-0 top-5">
+        </div> */}
+        <button
+          onClick={scrollLeft}
+          className="p-2 m-2 rounded-full bg-slate-400 absolute top-1/2 left-1 z-10 max-sm:hidden"
+        >
+          <FiChevronLeft className="text-xl font-bold" />
+        </button>
+        <button
+          onClick={scrollRight}
+          className="p-2 m-2 rounded-full bg-slate-400 absolute top-1/2 right-1 z-10 max-sm:hidden"
+        >
+          <FiChevronRight className="text-xl font-bold " />
+        </button>
+        <button
+          onClick={scrollsmLeft}
+          className="p-2 m-2 rounded-full bg-slate-400 absolute top-1/2 left-1 z-10 sm:hidden"
+        >
+          <FiChevronLeft className="text-xl font-bold" />
+        </button>
+        <button
+          onClick={scrollsmRight}
+          className="p-2 m-2 rounded-full bg-slate-400 absolute top-1/2 right-1 z-10 sm:hidden"
+        >
+          <FiChevronRight className="text-xl font-bold " />
+        </button>
+        {/* <div className="absolute right-0 top-5">
           <button
             onClick={scrollsmLeft}
             className="p-2 m-2 md:hidden rounded-full bg-white"
@@ -84,10 +108,10 @@ function Carousel({ title, data, category, addToCart }) {
           >
             <FiChevronRight />
           </button>
-        </div>
+        </div> */}
         <div
           id={`${category}`}
-          className="carousel p-4 gap-16 flex items-center justify-start overflow-x-hidden scroll-smooth max-w-full max-sm:w-[280px]"
+          className="carousel p-4 gap-2 max-sm:gap-10 flex items-center justify-start overflow-x-hidden scroll-smooth max-w-full max-sm:w-[280px]"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}

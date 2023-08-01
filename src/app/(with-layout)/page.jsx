@@ -32,30 +32,35 @@ function Page() {
         data={popularProducts}
         category={"MostPopular"}
         addToCart={addToCart}
+        className={"object-fill"}
       />
       <Carousel
         title={"SmartPhones"}
         data={allSmartPhones}
         category={"SmartPhones"}
         addToCart={addToCart}
+        className={"object-fill"}
       />
       <Carousel
         title={"Laptops"}
         data={allLaptops}
         category={"Laptops"}
         addToCart={addToCart}
+        className={"object-fill"}
       />
       <Carousel
         title={"Watches"}
         data={allWatches}
         category={"Watches"}
         addToCart={addToCart}
+        className={"object-scale-down"}
       />
       <Carousel
         title={"Sunglasses"}
         data={allSunglasses}
         category={"Sunglasses"}
         addToCart={addToCart}
+        className={"object-fill"}
       />
     </div>
   );

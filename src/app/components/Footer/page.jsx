@@ -52,8 +52,8 @@ function Footer() {
               GizmoHub
             </h1>
           </div>
-          <p className="py-4">Address: Level-23, Lab-7 complex, Chattogram</p>
-          <p className="py-4">Phone : +1203341122</p>
+          <p className="py-2">Address: Level-23, Lab-7 complex, Chattogram</p>
+          <p className="py-1">Phone : +1203341122</p>
         </div>
       </div>
 
