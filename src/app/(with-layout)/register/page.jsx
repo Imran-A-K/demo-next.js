@@ -16,6 +16,7 @@ import { useFormik } from "formik";
 import { registerUser } from "@/app/hooks/authenticationFunctions/page";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import { useGetUser } from "@/app/hooks/api/data";
 // import Swal from "sweetalert2";
 
 function Register() {

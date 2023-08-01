@@ -3,6 +3,7 @@ import Image from "next/image";
 import Rating from "../Rating/page";
 import { useGetCart } from "@/app/hooks/api/data";
 import { FaCartPlus } from "react-icons/fa6";
+import { HiMinus, HiOutlineTrash, HiPlus } from "react-icons/hi";
 function Card({
   img,
   title,
@@ -78,6 +79,45 @@ function Card({
               )}
             </button>
           </div>
+          {/* <div className="flex gap-x-2 h-[36px] text-sm">
+            <div className="flex flex-1 max-w-[100px] items-center h-full border text-black font-medium">
+              <div
+                // className={`flex-1 h-full flex justify-center items-center cursor-pointer ${
+                //   quantity > 1 ? "" : "text-gray-400"
+                // }`}
+                
+              >
+                <HiMinus
+                // onClick={() => {
+                //   handleCartUpdate(id, false);
+                // }}
+                />
+              </div>
+              <div className="h-full flex justify-center items-center px-2">
+                {quantity}
+                
+              </div>
+              <div className="flex-1 h-full flex justify-center items-center cursor-pointer">
+                <HiPlus
+                onClick={() => {
+                  handleCartUpdate(id, true);
+                }}
+                />
+              </div>
+            </div>
+            <div className="flex flex-1 items-center justify-around">
+              $ {price}
+            </div>
+            <div className="text-xl cursor-pointer">
+              <HiOutlineTrash
+                onClick={() => {
+                  deleteCartItem(id);
+                  reloadCart();
+                }}
+                className="text-gray-500 hover:text-red-500 transition"
+              />
+            </div>
+          </div> */}
         </div>
       </div>
     </div>

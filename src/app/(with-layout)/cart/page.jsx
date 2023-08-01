@@ -4,6 +4,7 @@ import { Summary } from "@/app/components/Cart/Summary/page";
 import Container from "@/app/components/Container/page";
 import Loader from "@/app/components/Loader/page";
 import { useGetCart } from "@/app/hooks/api/data";
+import Link from "next/link";
 import React from "react";
 
 function Cart() {

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useGetCart, useGetUser } from "@/app/hooks/api/data";
 import Image from "next/image";
 import dummyUser from "/public/images/dummyUser.png";
+import logo from "/public/images/logo.png";
 
 const CustomLink = ({ href, title, className = "" }) => {
   const pathName = usePathname();
@@ -58,11 +59,11 @@ function Navbar({ sideBarIsOpen, setSideBarIsOpen }) {
     <header
       className={`${
         pathName !== "/" && "bg-blend-lighten border-b-stone-200"
-      } bg-gray-100 flex  items-center place-items-center justify-between w-full max-w-full lg:px-32 md:px-12 px-8 py-5 sticky top-0 z-20 font-bold text-xl font-mono `}
+      } bg-gray-100 flex  items-center place-items-center justify-between w-full max-w-full lg:px-32 md:px-12 px-8 sticky top-0 z-20 font-bold text-xl font-mono `}
     >
-      <nav className="lg:pl-10 relative">
-        <Link className="lg:pl-10" href={"/"}>
-          GizmoHub
+      <nav className="lg:pl-10 py-2 relative">
+        <Link href={"/"}>
+          <Image src={logo} height={80} width={130} alt="logo" className="" />
         </Link>
       </nav>
       {/* <nav className="hidden lg:flex items-center gap-x-8">

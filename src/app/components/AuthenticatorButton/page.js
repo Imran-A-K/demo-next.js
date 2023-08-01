@@ -18,7 +18,7 @@ function AuthenticatorButton({ title, type }) {
         <circle cx="8.5" cy="7" r="4" />
         <path d="M20 8v6M23 11h-6" />
       </svg> */}
-      <span className="ml-3">{title}</span>
+      <span className="">{title}</span>
     </button>
   );
 }
