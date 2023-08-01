@@ -153,3 +153,20 @@ export const useGetCart = () => {
   });
   return [cart, cartLoading, reloadCart];
 };
+
+export const useGetUser = () => {
+  const {
+    data: user = {},
+    refetch: reloadUser,
+    isLoading: userLoading,
+  } = useQuery({
+    queryKey: ["logged-user-data"],
+    queryFn: async () => {
+      const user = localStorage.getItem("loggedUser")
+        ? JSON.parse(localStorage.getItem("loggedUser"))
+        : null;
+      return user;
+    },
+  });
+  return [user, userLoading, reloadUser];
+};

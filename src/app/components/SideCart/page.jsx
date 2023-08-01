@@ -101,7 +101,7 @@ function SideCart({ sideBarIsOpen, setSideBarIsOpen }) {
               disabled={cart.length === 0}
               className="w-full max-w-md"
             >
-              Check Out
+              Proceed
             </CartButton>
           </Link>
         </div>

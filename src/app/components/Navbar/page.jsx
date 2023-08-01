@@ -2,7 +2,9 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
-import { useGetCart } from "@/app/hooks/api/data";
+import { useGetCart, useGetUser } from "@/app/hooks/api/data";
+import Image from "next/image";
+import dummyUser from "/public/images/dummyUser.png";
 
 const CustomLink = ({ href, title, className = "" }) => {
   const pathName = usePathname();
@@ -47,6 +49,8 @@ function Navbar({ sideBarIsOpen, setSideBarIsOpen }) {
   const pathName = usePathname();
   // console.log(pathName !== "/");
   const [cart, cartLoading] = useGetCart();
+  const [user, userLoading, reloadUser] = useGetUser();
+  // console.log(user);
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
@@ -65,7 +69,7 @@ function Navbar({ sideBarIsOpen, setSideBarIsOpen }) {
         <CustomLink href={"/"} title={"Home"} />
         <CustomLink href={"/products"} title={"Products"} />
       </nav> */}
-      <nav className="flex items-center justify-between gap-x-8">
+      <nav className="flex items-center justify-between gap-x-5">
         <CustomLink href={"/"} title={"Home"} className="max-md:hidden" />
         <CustomLink
           href={"/products"}
@@ -76,7 +80,7 @@ function Navbar({ sideBarIsOpen, setSideBarIsOpen }) {
           onClick={() => {
             setSideBarIsOpen(true);
           }}
-          className="flex max-lg:hidden mr-6 items-center cursor-pointer"
+          className="flex max-lg:hidden items-center cursor-pointer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -133,14 +137,9 @@ function Navbar({ sideBarIsOpen, setSideBarIsOpen }) {
             </span>
           ) : null}
         </Link> */}
-        <Link className="hidden lg:block" href="/login">
-          {/* focus:bg-indigo-700 */}
-          <button className="block mx-auto bg-black hover:bg-gray-700  text-white rounded-lg px-3 py-2 font-semibold">
-            Login
-          </button>
-        </Link>
+
         <button
-          className="lg:hidden flex lg:mr-6 items-center cursor-pointer"
+          className="lg:hidden flex items-center cursor-pointer"
           onClick={() => {
             setSideBarIsOpen(true);
           }}
@@ -176,6 +175,35 @@ function Navbar({ sideBarIsOpen, setSideBarIsOpen }) {
             <span className="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
           </span> */}
         </button>
+        {user && user.email ? (
+          <>
+            <Image
+              src={user.userImage ?? dummyUser}
+              height={40}
+              width={40}
+              alt="current user image"
+              className="rounded-full border-2"
+              priority
+            />
+            <button
+              onClick={() => {
+                localStorage.removeItem("loggedUser");
+                reloadUser();
+              }}
+              className="cursor-pointer md:block hidden mx-auto bg-black hover:bg-gray-700  text-white rounded-lg px-3 py-2 font-semibold"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <Link className="hidden md:block" href="/login">
+            {/* focus:bg-indigo-700 */}
+            <button className="block mx-auto bg-black hover:bg-gray-700  text-white rounded-lg px-3 py-2 font-semibold">
+              Login
+            </button>
+          </Link>
+        )}
+
         <button
           className="md:hidden flex flex-col justify-center items-center"
           onClick={() => setIsOpen(!isOpen)}
@@ -210,11 +238,36 @@ function Navbar({ sideBarIsOpen, setSideBarIsOpen }) {
                 className="text-white"
               />
             </span>
-            <Link className="" href="/login" onClick={() => setIsOpen(!isOpen)}>
+            {user && user.email ? (
+              <>
+                <button
+                  onClick={() => {
+                    localStorage.removeItem("loggedUser");
+                    reloadUser();
+                    setIsOpen(!isOpen);
+                  }}
+                  className="cursor-pointer mx-auto bg-transparent hover:bg-gray-700  text-white rounded-lg px-3 py-2 font-semibold"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <Link
+                onClick={() => setIsOpen(!isOpen)}
+                className="hidden md:block"
+                href="/login"
+              >
+                {/* focus:bg-indigo-700 */}
+                <button className="block mx-auto bg-black hover:bg-gray-700  text-white rounded-lg px-3 py-2 font-semibold">
+                  Login
+                </button>
+              </Link>
+            )}
+            {/* <Link className="" href="/login" onClick={() => setIsOpen(!isOpen)}>
               <button className="block mx-auto bg-white hover:bg-indigo-700 focus:bg-indigo-700 text-black rounded-lg px-3 py-2 font-semibold">
                 Login
               </button>
-            </Link>
+            </Link> */}
           </nav>
         </div>
       ) : null}

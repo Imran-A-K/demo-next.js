@@ -79,7 +79,7 @@ function Carousel({ title, data, category, addToCart }) {
         </button>
         <button
           onClick={scrollRight}
-          className="p-2 m-2 rounded-full bg-slate-400 absolute top-1/2 right-1 z-10 max-sm:hidden"
+          className="p-2 m-2 rounded-full bg-slate-400 absolute top-1/2 -right-5 max-[840px]:right-1 z-10 max-sm:hidden"
         >
           <FiChevronRight className="text-xl font-bold " />
         </button>

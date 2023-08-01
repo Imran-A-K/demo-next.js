@@ -127,7 +127,7 @@ function CartCard({ item, reloadCart }) {
           </div>
         </div>
         <div className="flex relative flex-col justify-end">
-          <span
+          {/* <span
             onClick={() => {
               deleteCartItem(id);
               reloadCart();
@@ -135,7 +135,7 @@ function CartCard({ item, reloadCart }) {
             className="absolute text-lg top-0 right-0 hover:text-red-600 cursor-pointer"
           >
             <HiOutlineTrash />
-          </span>
+          </span> */}
           <p className="text-gray-800 text-lg font-semibold max-[320px]:text-[10px] ">
             Total : ${quantity * price}
           </p>

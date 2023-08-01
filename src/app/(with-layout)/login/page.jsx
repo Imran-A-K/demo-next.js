@@ -5,6 +5,7 @@ import FormError from "@/app/components/FormError/page";
 import InputComponent from "@/app/components/InputComponent/page";
 import PasswordInput from "@/app/components/PasswordInput/page";
 import { loginSchema } from "@/app/components/schema/page";
+import { useGetUser } from "@/app/hooks/api/data";
 import { verifyUser } from "@/app/hooks/authenticationFunctions/page";
 import { useFormik } from "formik";
 import Link from "next/link";
@@ -18,6 +19,7 @@ import { BiError } from "react-icons/bi";
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+  const [user, userLoading, reloadUser] = useGetUser();
   const saveSettings = (settings, userVerification) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -56,6 +58,7 @@ function Login() {
             );
             router.push(userIntendedDestination ?? "/");
             localStorage.removeItem("userIntendedDestination");
+            reloadUser();
             // action.resetForm();
           } else {
             // toast.error(register);
@@ -130,7 +133,7 @@ function Login() {
                     <FormError ErrorImg={BiError}>{errors.password}</FormError>
                   ) : null}
 
-                  <AuthenticatorButton type={"submit"} title={"Sign In"} />
+                  <AuthenticatorButton type={"submit"} title={"Login"} />
                   <p className="mt-6 text-base text-gray-600 text-center font-semibold">
                     Don&apos;t have an account?{" "}
                     <Link href="/register" className=" text-black font-bold">

@@ -22,7 +22,7 @@ function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
   const [selectedImage, setSelectedImage] = useState(dummyUser);
-
+  const [user, userLoading, reloadUser] = useGetUser();
   const router = useRouter();
   const initialValues = {
     name: "",
@@ -73,6 +73,7 @@ function Register() {
             );
             router.push(userIntendedDestination ?? "/");
             localStorage.removeItem("userIntendedDestination");
+            reloadUser();
             // action.resetForm();
           } else {
             // toast.error(register);
@@ -210,7 +211,7 @@ function Register() {
                     handleImageChange={handleImageChange}
                   />
 
-                  <AuthenticatorButton type={"submit"} title={"Sign Up"} />
+                  <AuthenticatorButton type={"submit"} title={"Register"} />
                   <p className="mt-6 text-base text-gray-600 text-center font-semibold">
                     Already have an account?{" "}
                     <Link href="/login" className=" text-black font-bold">

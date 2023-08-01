@@ -11,6 +11,7 @@ import {
 } from "../hooks/api/data";
 import addToCart from "../hooks/cartFunctions/cartFunctions";
 import Loader from "../components/Loader/page";
+import Container from "../components/Container/page";
 function Page() {
   const pathName = usePathname();
   const [allProducts, allProductsLoading] = useGetAllProducts();
