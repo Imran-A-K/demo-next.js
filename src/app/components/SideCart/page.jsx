@@ -51,7 +51,7 @@ function SideCart({ sideBarIsOpen, setSideBarIsOpen }) {
             <HiOutlineArrowNarrowRight className="text-2xl" />
           </div>
         </div>
-        <div className="flex flex-col gap-y-2 h-[420px] md:h-[950px] lg:h-[520px] overflow-y-auto overflow-x-hidden border-b scroll-smooth">
+        <div className="flex flex-col gap-y-2 h-[600px] md:h-[950px] lg:h-[520px] overflow-y-auto overflow-x-hidden border-b scroll-smooth">
           {!cartLoading && cart?.length === 0 && (
             <p className="pt-7">No items Added in Cart</p>
           )}
