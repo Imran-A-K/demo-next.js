@@ -7,6 +7,7 @@ import Link from "next/link";
 import { CartButton } from "../Cart/CartButton/page";
 import { useRouter } from "next/navigation";
 import { calculateCart } from "@/app/hooks/cartFunctions/cartFunctions";
+import Loader from "../Loader/page";
 
 function SideCart({ sideBarIsOpen, setSideBarIsOpen }) {
   const router = useRouter();
@@ -54,17 +55,19 @@ function SideCart({ sideBarIsOpen, setSideBarIsOpen }) {
           {!cartLoading && cart?.length === 0 && (
             <p className="pt-7">No items Added in Cart</p>
           )}
-          {cartLoading
-            ? "Loading"
-            : cart?.map((item) => (
-                <SideBarCartItem
-                  key={item.id}
-                  item={item}
-                  setSideBarIsOpen={setSideBarIsOpen}
-                  router={router}
-                  reloadCart={reloadCart}
-                />
-              ))}
+          {cartLoading ? (
+            <Loader />
+          ) : (
+            cart?.map((item) => (
+              <SideBarCartItem
+                key={item.id}
+                item={item}
+                setSideBarIsOpen={setSideBarIsOpen}
+                router={router}
+                reloadCart={reloadCart}
+              />
+            ))
+          )}
         </div>
         <div className="flex flex-col gap-y-3 py-4 mt-4">
           <div className="flex w-full justify-between items-center">

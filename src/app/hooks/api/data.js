@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 export const useGetAllProducts = () => {
-  const { data: allProducts = [] } = useQuery({
+  const { data: allProducts = [], isLoading: allProductsLoading } = useQuery({
     queryKey: ["all-Products"],
     queryFn: async () => {
       const response = await axios.get(`https://dummyjson.com/products`);
@@ -17,7 +17,7 @@ export const useGetAllProducts = () => {
       return techProducts;
     },
   });
-  return [allProducts];
+  return [allProducts, allProductsLoading];
 };
 
 export const useGetAllCategories = () => {
@@ -33,7 +33,7 @@ export const useGetAllCategories = () => {
   return [allCategories];
 };
 export const useSmartPhones = () => {
-  const { data: allSmartPhones = [] } = useQuery({
+  const { data: allSmartPhones = [], isLoading: smartPhoneLoading } = useQuery({
     queryKey: ["smartphones"],
     queryFn: async () => {
       const response = await axios.get(
@@ -42,10 +42,10 @@ export const useSmartPhones = () => {
       return response.data.products;
     },
   });
-  return [allSmartPhones];
+  return [allSmartPhones, smartPhoneLoading];
 };
 export const useLaptops = () => {
-  const { data: allLaptops = [] } = useQuery({
+  const { data: allLaptops = [], isLoading: laptopsLoading } = useQuery({
     queryKey: ["laptops"],
     queryFn: async () => {
       const response = await axios.get(
@@ -54,10 +54,10 @@ export const useLaptops = () => {
       return response.data.products;
     },
   });
-  return [allLaptops];
+  return [allLaptops, laptopsLoading];
 };
 export const useWatches = () => {
-  const { data: allWatches = [] } = useQuery({
+  const { data: allWatches = [], isLoading: allWatchesLoading } = useQuery({
     queryKey: ["watches"],
     queryFn: async () => {
       const response = await axios.get(
@@ -66,10 +66,10 @@ export const useWatches = () => {
       return response.data.products;
     },
   });
-  return [allWatches];
+  return [allWatches, allWatchesLoading];
 };
 export const useSunglasses = () => {
-  const { data: allSunglasses = [] } = useQuery({
+  const { data: allSunglasses = [], isLoading: sunglassesLoading } = useQuery({
     queryKey: ["sunglasses"],
     queryFn: async () => {
       const response = await axios.get(
@@ -78,11 +78,11 @@ export const useSunglasses = () => {
       return response.data.products;
     },
   });
-  return [allSunglasses];
+  return [allSunglasses, sunglassesLoading];
 };
 
 export const useFullProducts = () => {
-  const { data: fullProducts = [] } = useQuery({
+  const { data: fullProducts = [], isLoading: fullProductsLoading } = useQuery({
     queryKey: ["full-products"],
     queryFn: async () => {
       const response = await axios.get(
@@ -101,7 +101,7 @@ export const useFullProducts = () => {
       return techProducts;
     },
   });
-  return [fullProducts];
+  return [fullProducts, fullProductsLoading];
 };
 
 export const useGetProduct = (id) => {

@@ -1,16 +1,26 @@
 "use client";
 import Container from "@/app/components/Container/page";
 import Rating from "@/app/components/Rating/page";
-import { useGetCategoryWiseProduct, useGetProduct } from "@/app/hooks/api/data";
+import {
+  useGetCart,
+  useGetCategoryWiseProduct,
+  useGetProduct,
+} from "@/app/hooks/api/data";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import addPercentage from "@/app/hooks/customFunctions/functions";
 import ProductImages from "@/app/components/ProductImages/page";
 import Carousel from "@/app/components/Carousel/page";
 import addToCart from "@/app/hooks/cartFunctions/cartFunctions";
+import { FaCartPlus } from "react-icons/fa6";
 
 function Product({ params, searchParams }) {
   const [product, refetch, isLoading] = useGetProduct(params.productId);
+  const [cart, cartLoading, reloadCart] = useGetCart();
+  const alreadyAddedToCart = !!cart?.find(
+    (item) => item.id === parseInt(params.productId)
+  );
+  // console.log(alreadyAddedToCart);
   // console.log(searchParams.searchQuery);
   const [productsOfCategory, categoryLoading] = useGetCategoryWiseProduct(
     params.productId,
@@ -28,6 +38,11 @@ function Product({ params, searchParams }) {
   } = product;
   const [activeImage, setActiveImage] = useState(product.images?.[0]);
   const mainPrice = addPercentage(price, discountPercentage);
+  const handleAddToCart = (event, product) => {
+    event.stopPropagation();
+    addToCart(product);
+    reloadCart();
+  };
   // console.log(images);
   //   console.log(product);
   useEffect(() => {
@@ -83,12 +98,25 @@ function Product({ params, searchParams }) {
                 </div>
                 <div className="flex items-center my-2">
                   <button
-                    onClick={() => {
-                      addToCart(product);
+                    disabled={alreadyAddedToCart}
+                    onClick={(event) => {
+                      handleAddToCart(event, product);
                     }}
-                    className="border px-5 py-1 text-lg text-white bg-gray-800 rounded-lg "
+                    className={`border-2 w-1/3 border-black px-3 py-1 text-base rounded-lg ${
+                      alreadyAddedToCart
+                        ? "bg-white text-gray-900"
+                        : "text-white hover:text-gray-900 hover:bg-white bg-gray-800"
+                    }`}
                   >
-                    Add to Cart
+                    {alreadyAddedToCart ? (
+                      <span className="flex gap-2 items-center justify-center">
+                        Added to Cart
+                      </span>
+                    ) : (
+                      <span className="flex gap-2 items-center justify-center">
+                        <FaCartPlus /> Add to Cart
+                      </span>
+                    )}
                   </button>
                 </div>
                 {/* <div className="">

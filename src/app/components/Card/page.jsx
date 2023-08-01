@@ -27,10 +27,10 @@ function Card({
       className="cursor-pointer group transition"
       onClick={() => router.push(`/products/${id}?searchQuery=${category}`)}
     >
-      <div className="card bg-white w-[200px] sm:w-[300px] m-2 rounded-lg shadow-lg">
+      <div className="card bg-white w-[200px] sm:w-[250px] m-2 rounded-lg shadow-md">
         <div className="top">
           <Image
-            className={`w-[200px] h-[200px] sm:w-[300px] rounded-xl object-fill group-hover:scale-105 transition duration-300 p-2 ${className}`}
+            className={`w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] rounded-xl object-cover group-hover:scale-105 transition duration-300 p-2 ${className}`}
             src={img}
             alt={`${id}`}
             width={300}
@@ -47,7 +47,7 @@ function Card({
 
           <div className="pricing flex items-center">
             {" "}
-            <div className="price font-bold">Price: ${price}</div>
+            <div className="price font-extrabold">Price: ${price}</div>
           </div>
           <Rating rating={rating} />
           <div className="flex flex-1 w-full items-center my-2">
@@ -69,7 +69,7 @@ function Card({
             >
               {alreadyAddedToCart ? (
                 <span className="flex gap-2 items-center justify-center">
-                  <FaCartPlus /> Added to Cart
+                  Added to Cart
                 </span>
               ) : (
                 <span className="flex gap-2 items-center justify-center">

@@ -12,9 +12,12 @@ import {
 import ProductCard from "@/app/components/Product-card/page";
 import { useRouter } from "next/navigation";
 import addToCart from "@/app/hooks/cartFunctions/cartFunctions";
+import Card from "@/app/components/Card/page";
+import Container from "@/app/components/Container/page";
+import Loader from "@/app/components/Loader/page";
 
 function Products() {
-  const [fullProducts] = useFullProducts();
+  const [fullProducts, fullProductsLoading] = useFullProducts();
   // const products = [...fullProducts];
   const router = useRouter();
   const [products, setProducts] = useState([]);
@@ -105,84 +108,100 @@ function Products() {
   // };
 
   return (
-    <div className="flex items-center justify-center">
-      <div
-        className="max-w-7xl 
-     font-mono relative"
-      >
-        <div className="flex items-center max-sm:flex-col lg:gap-40 max-sm:gap-4 justify-between lg:px-5 py-6">
-          <h1 className="text-4xl pt-5 font-bold">Our Products</h1>
-          {/* <div className=" bg-gray-100 flex justify-center items-center px-20 py-10">
-            <div className="space-y-10">
-              
-            </div>
-          </div> */}
-          {/* <div className="flex items-center p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500">
-            
-          </div> */}
-          <div className="flex bg-gray-100 p-4 w-72 space-x-4 rounded-lg shadow-lg hover:shadow-xl hover:border-1 transform hover:scale-105 transition duration-500">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 opacity-30"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-            <input
-              className="bg-gray-100 outline-none"
-              type="search"
-              placeholder="Search your product..."
-              value={searchText}
-              onChange={(event) => {
-                setSearchText(event.target.value);
-                filteredProducts(event);
-              }}
+    <Container>
+      <div className="flex items-center max-sm:flex-col max-sm:gap-4 justify-between py-6 max-[830px]:px-20">
+        <h1 className="text-4xl font-bold">Our Products</h1>
+
+        <div className="flex bg-gray-100 p-4 w-72 space-x-4 rounded-lg shadow-sm lg:hover:shadow-md border-2 transform hover:scale-x-105 transition duration-500">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 opacity-30"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
             />
-          </div>
+          </svg>
+          <input
+            className="bg-gray-100 outline-none"
+            type="search"
+            placeholder="Search your product..."
+            value={searchText}
+            onChange={(event) => {
+              setSearchText(event.target.value);
+              filteredProducts(event);
+            }}
+          />
+          {/* <span>
+            <span
+              className={`bg-gray-950 dark:bg-white block transition-all duration-300 ease-out h-0.5 w-5 rounded-sm rotate-45 translate-y-1 `}
+            ></span>
+            <span
+              className={`bg-gray-950 dark:bg-white block transition-all duration-300 ease-out h-0.5 w-5 rounded-sm -rotate-45 translate-y-[2px] `}
+            ></span>
+          </span> */}
         </div>
-        <div className="max-sm:px-4 lg:pb-24">
-          {/* sm:px-6 lg:px-2 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center gap-14 lg:my-10 max-sm:mt-10 max-sm:mb-2">
-            {/* <MobileFilters sizes={sizes} colors={colors} /> */}
-            {/* <div className="hidden lg:block"></div> */}
-            {/* <div className="mt-6 lg:col-span-4 lg:mt-0"> */}
-            {/* {products.length === 0 && <NoResults />} */}
-            {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"> */}
-            {/* {products.map((item) => (
-                  <ProductCard key={item.id} data={item} />
-                ))} */}
-            {/* </div> */}
-            {/* </div> */}
-            {products?.map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                img={product.images[0]}
-                title={product.title}
-                price={product.price}
-                rating={product.rating}
-                router={router}
-                category={product.category}
-                product={product}
-                addToCart={addToCart}
-              ></ProductCard>
-            ))}
-          </div>
-          {searchNotMatched && (
-            <div>
-              <h2 className="text-4xl text-center font-mono font-semibold max-sm:text-2xl">
-                No Items matched your search.....
-              </h2>
+      </div>
+
+      <div className=" relative flex items-center font-mono justify-center">
+        {fullProductsLoading ? (
+          <Loader />
+        ) : (
+          <div className="max-sm:px-4 lg:pb-24">
+            {/* sm:px-6 lg:px-2 */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center gap-14 lg:my-10 max-sm:mt-10 max-sm:mb-2">
+              {/* <MobileFilters sizes={sizes} colors={colors} /> */}
+              {/* <div className="hidden lg:block"></div> */}
+              {/* <div className="mt-6 lg:col-span-4 lg:mt-0"> */}
+              {/* {products.length === 0 && <NoResults />} */}
+              {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"> */}
+              {/* {products.map((item) => (
+            <ProductCard key={item.id} data={item} />
+          ))} */}
+              {/* </div> */}
+              {/* </div> */}
+              {products?.map((product) => (
+                // <ProductCard
+                //   key={product.id}
+                //   id={product.id}
+                //   img={product.images[0]}
+                //   title={product.title}
+                //   price={product.price}
+                //   rating={product.rating}
+                //   router={router}
+                //   category={product.category}
+                //   product={product}
+                //   addToCart={addToCart}
+                // ></ProductCard>
+                <Card
+                  key={product.id}
+                  img={product.images[0]}
+                  title={product.title}
+                  price={product.price}
+                  rating={product.rating}
+                  router={router}
+                  id={product.id}
+                  category={product.category}
+                  product={product}
+                  addToCart={addToCart}
+                />
+              ))}
             </div>
-          )}
-        </div>
+            {searchNotMatched && (
+              <div>
+                <h2 className="text-4xl text-center font-mono font-semibold max-sm:text-2xl">
+                  No Items matched your search.....
+                </h2>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* <div className="text-center mb-8">
           <p>
             Current Page: {currentPage + 1} and items per page: {itemsPerPage}
@@ -215,7 +234,7 @@ function Products() {
           </select>
         </div> */}
       </div>
-    </div>
+    </Container>
   );
 }
 
@@ -256,3 +275,36 @@ export default Products;
 //     </div>
 //   );
 // };
+
+{
+  /* <div className="flex items-center max-sm:flex-col lg:gap-40 max-sm:gap-4 justify-between lg:px-5 py-6">
+          <h1 className="text-4xl pt-5 font-bold">Our Products</h1>
+          
+          <div className="flex bg-gray-100 p-4 w-72 space-x-4 rounded-lg shadow-lg hover:shadow-xl hover:border-1 transform hover:scale-105 transition duration-500">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 opacity-30"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+            <input
+              className="bg-gray-100 outline-none"
+              type="search"
+              placeholder="Search your product..."
+              value={searchText}
+              onChange={(event) => {
+                setSearchText(event.target.value);
+                filteredProducts(event);
+              }}
+            />
+          </div>
+        </div> */
+}
