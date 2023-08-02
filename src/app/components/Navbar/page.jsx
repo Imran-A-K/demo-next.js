@@ -191,7 +191,7 @@ function Navbar({ sideBarIsOpen, setSideBarIsOpen }) {
                 localStorage.removeItem("loggedUser");
                 reloadUser();
               }}
-              className="cursor-pointer md:block hidden mx-auto bg-black hover:bg-gray-700  text-white rounded-lg px-3 py-2 font-semibold"
+              className="cursor-pointer md:block hidden mx-auto bg-black hover:bg-gray-700  text-white rounded-lg px-3 py-2 font-medium"
             >
               Logout
             </button>
@@ -199,7 +199,7 @@ function Navbar({ sideBarIsOpen, setSideBarIsOpen }) {
         ) : (
           <Link className="hidden md:block" href="/login">
             {/* focus:bg-indigo-700 */}
-            <button className="block mx-auto bg-black hover:bg-gray-700  text-white rounded-lg px-3 py-2 font-semibold">
+            <button className="block mx-auto bg-black hover:bg-gray-700  text-white rounded-lg px-3 py-2 font-medium">
               Login
             </button>
           </Link>

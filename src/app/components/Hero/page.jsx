@@ -14,7 +14,7 @@ function Hero() {
       >
         <Image src={heroImage} className="w-[700px] mx-auto my-4" alt="/" />
         <div className="flex flex-col justify-center">
-          <p className="text-[#00df9a] font-bold ">The Best Online Store</p>
+          <p className="text-gray-500 font-bold ">The Best Online Store</p>
           <h1 className="md:text-4xl sm:text-3xl text-2xl font-bold py-2">
             One stop tech solution
           </h1>
@@ -29,7 +29,7 @@ function Hero() {
             onClick={() => {
               router.push("/products");
             }}
-            className="bg-black text-white w-[200px] rounded-md font-bold my-6 mx-auto md:mx-0 py-3"
+            className="bg-black text-white w-[200px] rounded-md font-semibold my-6 mx-auto md:mx-0 py-3"
           >
             Get Started
           </button>

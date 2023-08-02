@@ -1,7 +1,7 @@
 "use client";
 import { useGetCart } from "@/app/hooks/api/data";
 import React from "react";
-import { HiOutlineArrowNarrowRight, HiOutlineTrash } from "react-icons/hi";
+import { HiOutlineArrowNarrowRight, HiOutlineTrash, HiX } from "react-icons/hi";
 import SideBarCartItem from "../SideBarCartItem/page";
 import Link from "next/link";
 import { CartButton } from "../Cart/CartButton/page";
@@ -48,7 +48,7 @@ function SideCart({ sideBarIsOpen, setSideBarIsOpen }) {
             onClick={() => setSideBarIsOpen(false)}
             className="cursor-pointer w-8 h-8 flex justify-center items-center"
           >
-            <HiOutlineArrowNarrowRight className="text-2xl" />
+            <HiX className="text-2xl" />
           </div>
         </div>
         <div className="flex flex-col gap-y-2 h-[600px] md:h-[950px] lg:h-[520px] overflow-y-auto overflow-x-hidden border-b scroll-smooth">

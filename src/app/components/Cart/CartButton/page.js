@@ -12,7 +12,7 @@ export const CartButton = ({
       disabled={disabled}
       className={`
           w-auto 
-          rounded-full 
+          rounded-lg
           bg-black
           border
           border-transparent
